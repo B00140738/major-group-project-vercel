@@ -16,7 +16,7 @@
     "bcrypt": "^5.1.1",
     "email-validator": "^2.0.4",
     "iron-session": "^8.0.1",
-    "mongodb": "^6.1.0",
+    "mongodb": "^6.5.0",
     "next": "latest",
     "next.js": "^1.0.3",
     "react": "latest",
