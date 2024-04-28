@@ -1,0 +1,26 @@
+{
+  "name": "test",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.13",
+    "bcrypt": "^5.1.1",
+    "email-validator": "^2.0.4",
+    "iron-session": "^8.0.1",
+    "mongodb": "^6.1.0",
+    "next": "latest",
+    "next.js": "^1.0.3",
+    "react": "latest",
+    "react-dom": "latest",
+    "request": "^2.88.2",
+    "requests": "^0.3.0"
+  }
+}
