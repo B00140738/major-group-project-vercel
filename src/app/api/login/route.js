@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers'
-
+import { NextResponse } from "next/server";
 
 export async function GET(req, res) {
   try {
@@ -34,6 +34,6 @@ export async function GET(req, res) {
 
   } catch (error) {
     console.error('Error:', error);
-    Response.status(500).json({ error: 'Internal Server Error' });
+    NextResponse.status(500).json({ error: 'Internal Server Error' });
   }
 }
