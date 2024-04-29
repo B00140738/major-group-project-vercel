@@ -30,9 +30,10 @@ export async function GET(req, res) {
       }
     }
 
-    return Response.json({ "data": "" + valid + "" });
-
+    return NextResponse.json({ "data": "" + valid + "" });
+    return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
     console.error('Error:', error);
+    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
