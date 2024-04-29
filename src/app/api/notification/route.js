@@ -12,9 +12,11 @@ export async function GET(request) {
         const db = client.db(dbName);
 
         // Parse the request cookies
-        const cookies = cookie.parse(request.headers.get('cookie') || '');
-        const currentUsername = cookies.username;
-        console.log('Current username from cookie:', currentUsername);
+        if (typeof window !== "undefined"){
+            const cookies = cookie.parse(request.headers.get('cookie') || '');
+            const currentUsername = cookies.username;
+            console.log('Current username from cookie:', currentUsername);
+        }
 
         // Ensure that a username is available
         if (!currentUsername) {
