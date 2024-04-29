@@ -30,5 +30,6 @@ export async function GET(req, res) {
     return Response.json({ success: valid }, { status: 200 });
   } catch (error) {
     console.error('Error:', error);
+    return Response.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
