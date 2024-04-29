@@ -8,7 +8,7 @@ export async function POST(req) {
     try {
         const { token, newPassword } = await req.json(); 
         // Connect to MongoDB
-        const client = new MongoClient('mongodb+srv://betsunaidzeb:Ux3Fw4nykUyctoyY@cluster0.mtuixbo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
+        const client = new MongoClient('mongodb+srv://b00140738:YtlVhf9tX6yBs2XO@cluster0.j5my8yy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0');
         const dbName = 'forums';
         await client.connect();
         const db = client.db(dbName);

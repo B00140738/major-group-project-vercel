@@ -2,7 +2,7 @@
 import { NextResponse } from "next/server";
 import { MongoClient, ObjectId } from 'mongodb';
 
-const url = 'mongodb+srv://betsunaidzeb:Ux3Fw4nykUyctoyY@cluster0.mtuixbo.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const url = 'mongodb+srv://b00140738:YtlVhf9tX6yBs2XO@cluster0.j5my8yy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
 const dbName = 'forums';
 const client = new MongoClient(url);
 
