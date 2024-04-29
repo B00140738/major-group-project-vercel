@@ -2,7 +2,7 @@ import { cookies } from 'next/headers'
 
 
 export async function GET(req, res) {
-  try {
+  
     const { searchParams } = new URL(req.url);
     const username = searchParams.get('username');
     const pass = searchParams.get('pass');
@@ -33,8 +33,4 @@ export async function GET(req, res) {
 
     return Response.json({ "data": "" + valid + "" });
 
-  } catch (error) {
-    console.error('Error:', error);
-    Response.status(500).json({ error: 'Internal Server Error' });
   }
-}
