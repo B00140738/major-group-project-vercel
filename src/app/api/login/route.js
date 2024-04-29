@@ -2,49 +2,37 @@ import { cookies } from 'next/headers'
 import { NextResponse } from "next/server";
 
 export async function GET(req, res) {
-  // Make a note we are on
-  // the api. This goes to the console.
-  const { searchParams } = new URL(req.url)
-  const username = searchParams.get('username')
-  const pass = searchParams.get('pass')
+  try {
+    const username = req.query.username;
+    const pass = req.query.pass;
 
-  // =================================================
-  
-  const { MongoClient } = require('mongodb');
-  //const url = 'mongodb://root:example@localhost:27017/';
-  const url = 'mongodb+srv://b00140738:YtlVhf9tX6yBs2XO@cluster0.j5my8yy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
-  const client = new MongoClient(url);
-  const dbName = 'app'; // database name
-  await client.connect();
-  console.log('Connected successfully to server');
-  const db = client.db(dbName);
-  const collection = db.collection('register'); // collection name
+    const { MongoClient } = require('mongodb');
+    const url = 'mongodb+srv://b00140738:YtlVhf9tX6yBs2XO@cluster0.j5my8yy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+    const client = new MongoClient(url);
+    const dbName = 'forums';
 
-  const findResult = await collection.find({"username":
-  username}).toArray();
-  console.log('Found documents =>', findResult);
-  const bcrypt = require('bcrypt');
-  let hashResult = bcrypt.compareSync(pass, findResult[0].pass); // true
-  console.log("checking " + findResult[0].pass);
-  console.log("Hash Comparison Result " + hashResult);
+    await client.connect();
+    const db = client.db(dbName);
+    const collection = db.collection('register');
 
-  let valid = false
-  if(findResult.length >0 ){
-  valid = true;
+    // Find user by username
+    const findResult = await collection.findOne({ "username": username });
+
+    let valid = false;
+    const bcrypt = require('bcrypt');
+    if (findResult) { // Check if user was found
+      let hashResult = bcrypt.compareSync(pass, findResult.pass); // Compare password
+      if (hashResult) {
+        valid = true;
+        cookies().set('auth', true);
+        cookies().set('username', username);
+        cookies().set('userId', findResult._id.toString()); // Store userId as string
+      }
+    }
+
+    return Response.json({ success: true }, { status: 200 });
+  } catch (error) {
+    console.error('Error:', error);
+    return Response.json({ error: 'Internal Server Error' }, { status: 500 });
   }
-
-  if(findResult.length >0 && hashResult == true){
-    valid = true;
-    console.log("login valid")
-    // save a little cookie to say we are authenticated
-    console.log("Saving username and auth status")
-    valid = true;
-    cookies().set('auth', true);
-    cookies().set('username', username);
-    cookies().set('userId', findResult._id.toString()); // Store userId as string
-    } else {
-    valid = false;
-    console.log("login invalid")
-  }
-  return NextResponse.json({ "data":"" + valid });
 }
