@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers'
-import { Response } from "next/server";
+import { NextResponse } from "next/server";
 
 export async function GET(req, res) {
   // Make a note we are on
