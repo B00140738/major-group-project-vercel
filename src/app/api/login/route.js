@@ -1,5 +1,5 @@
 import { cookies } from 'next/headers'
-import { NextResponse } from "next/server";
+import { Response } from "next/server";
 
 export async function GET(req, res) {
   // Make a note we are on
@@ -46,5 +46,5 @@ export async function GET(req, res) {
     valid = false;
     console.log("login invalid")
   }
-  return Response.json({ "data":"" + valid + ""})
+  return Response.json({ "data":"" + valid });
 }
