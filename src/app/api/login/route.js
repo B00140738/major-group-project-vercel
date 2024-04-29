@@ -46,5 +46,5 @@ export async function GET(req, res) {
     valid = false;
     console.log("login invalid")
   }
-  return Response.json({ "data":"" + valid });
+  return NextResponse.json({ "data":"" + valid });
 }
