@@ -3,8 +3,9 @@ import { NextResponse } from "next/server";
 
 export async function GET(req, res) {
   try {
-    const username = req.query.username;
-    const pass = req.query.pass;
+    const { searchParams } = new URL(req.url);
+    const username = searchParams.get("username");
+    const pass = searchParams.get("pass");
 
     const { MongoClient } = require('mongodb');
     const url = 'mongodb+srv://b00140738:YtlVhf9tX6yBs2XO@cluster0.j5my8yy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
@@ -30,10 +31,9 @@ export async function GET(req, res) {
       }
     }
 
-    return NextResponse.json({ "data": "" + valid + "" });
-    return NextResponse.json({ success: true }, { status: 200 });
+    return Response.json({ success: true }, { status: 200 });
   } catch (error) {
     console.error('Error:', error);
-    return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
+    return Response.json({ error: 'Internal Server Error' }, { status: 500 });
   }
 }
