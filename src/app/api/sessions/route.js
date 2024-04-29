@@ -1,6 +1,4 @@
-'use server'
- 
-import { cookies } from 'next/headers'
+ import { cookies } from 'next/headers'
  
 export async function GET(req,res) {
   const { searchParams } = new URL(req.url)
