@@ -18,10 +18,10 @@ export async function GET(req, res) {
   await client.connect();
   console.log('Connected successfully to server');
   const db = client.db(dbName);
-  const collection = db.collection('login'); // collection name
+  const collection = db.collection('register'); // collection name
 
   const findResult = await collection.find({"username":
-  email}).toArray();
+  username}).toArray();
   console.log('Found documents =>', findResult);
   const bcrypt = require('bcrypt');
   let hashResult = bcrypt.compareSync(pass, findResult[0].pass); // true
